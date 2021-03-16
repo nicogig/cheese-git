@@ -33,13 +33,6 @@ build() {
   ninja -C build
 }
 
-check() (
-  glib-compile-schemas "${GSETTINGS_SCHEMA_DIR:=$PWD/$_pkgname/data}"
-  export GSETTINGS_SCHEMA_DIR
-
-  xvfb-run meson test -C build --print-errorlogs
-)
-
 package() {
   DESTDIR="$pkgdir" meson install -C build
 }
